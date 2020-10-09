@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <title>Washaholic Laundry</title>
+  <style>
+    body {background-color: tan;}
+    .container{
+      width: 750px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="jasa.html">
+    <img src="https://img2.pngdownload.id/20180528/gpr/kisspng-logo-laundry-service-laundry-room-towel-laundry-service-5b0c5a633468a5.3960161515275362272147.jpg" 
+    width="100" height="50" class="d-inline-block align-top" alt="logo" loading="lazy">
+    Hi! Selamat Mencuci Di Washaholic Laundry!
+    </a>
+  </nav>
+  <br>
+    
+  <div class="container">
+  <h2>Data Pesanan</h2>
+  <form>
+    <div class="form-group row">
+      <label for="nama" class="col-sm-2 col-form-label">Nama Pelanggan</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="id_nama">
+      </div>
+
+      <label for="alamat" class="col-sm-2 col-form-label">Alamat Pelanggan</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="id_alamat">
+      </div>
+                
+      <label for="total" class="col-sm-2 col-form-label">Total Berat (kg)</label>
+      <div class="col-sm-10">
+      <input type="number" class="form-control" id="id_total">
+      </div>
+
+      <label for="jasa" class="col-sm-2 col-form-label" id="id_jasa">Pilihan Jasa</label>
+      <div class="col-sm-10"> 
+      <input type="checkbox" name="jasa" value="Cuci-Kering"> Cuci-Kering
+      <input type="checkbox" name="jasa" value="Setrika"> Setrika 
+      </div>
+
+      <label for="barang" class="col-sm-2 col-form-label" id="id_barang">Pengambilan Laundry</label>
+      <div class="col-sm-10"> 
+      <input type="radio" name="barang" value="Antar"> Antar
+      <input type="radio" name="barang" value="Ambil"> Ambil
+      </div>
+
+      <label for="tanggalcuci" class="col-sm-2 col-form-label">Tanggal Penerimaan</label>
+      <div class="col-sm-10">
+      <input type="date" name="tanggalcuci" id="id_tanggalcuci">
+      </div>
+
+      <label for="tanggalkembali" class="col-sm-2 col-form-label">Tanggal Pengembalian</label>
+      <div class="col-sm-10">
+      <input type="date" name="tanggalkembali" id="id_tanggalkembali">
+      </div>
+     
+      <div class="col-sm-10">
+      <a class="btn btn-dark" href="biaya.html" role="button">Proses</a>
+      </div>
+  </form>
+  <br>
+  <br>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nama</th>
+      <th scope="col">Alamat</th>
+      <th scope="col">Berat</th>
+      <th scope="col">Jasa</th>
+      <th scope="col">Pengambilan</th>
+      <th scope="col">Tgl.Datang</th>
+      <th scope="col">Tgl.Selesai</th>
+      <th scope="col">Keterangan</th>
+    </tr>
+  </thead>
+  <tbody id="tampildata"></tbody>
+  </table>
+  </div>
+
+  <script>
+    var namapelanggan = []
+    var alamatpelanggan = []
+    var totalberat = []
+    var pilihanjasa = []
+    var pengambilanbrg = []
+    var tgldtg = []
+    var tglsls = []
+
+    var tampil = document.getElementById('tampildata')
+
+    function show() {
+      tampil.innerHTML = ""
+
+      for(i = 0; i < namapelanggan.length; i++){
+
+        tampil.innerHTML += "<tr>"+
+          "<td>"+namapelanggan[i]+"</td>"+
+          "<td>"+alamatpelanggan[i]+"</td>"+
+          "<td>"+totalberat[i]+"</td>"+
+          "<td>"+pilihanjasa[i]+"</td>"+
+          "<td>"+pengambilanbrg[i]+"</td>"+
+          "<td>"+tgldtg[i]+"</td>"+
+          "<td>"+tglsls[i]+"</td>"+
+          "<td>"+
+          "<button class='btn btn-secondary pr-3'>Info</button>" +
+          "<button class='btn btn-danger'>Hapus</button>"+
+          "</td>"+
+          "</tr>"
+            
+        }
+      }
+
+      function data() {
+            document.getElementById('id_nama').value=document.getElementById('namapelanggan').value
+            document.getElementById('id_alamat').value=document.getElementById('alamtpelanggan').value
+            document.getElementById('id_total').value=document.getElementById('totalberat').value
+            document.getElementById('id_jasa').value=document.getElementById('pilihanjasa').value
+            document.getElementById('id_barang').value=document.getElementById('pengembalianbrg').value
+            document.getElementById('id_tanggalcuci').value=document.getElementById('tgldtg').value
+            document.getElementById('id_tanggalkembali').value=document.getElementById('tglsls').value
+
+            show()
+        }
+
+        function add(){
+            var nmpelanggan = document.getElementById('id_nama').value
+            var almtpelanggan = document.getElementById('id_alamat').value
+            var berat = document.getElementById('id_total').value
+            var pilihanjs = document.getElementById('id_jasa').value
+            var kmblbarang = document.getElementById('id_barang').value
+            var tglcuci = document.getElementById('id_tanggalcuci').value
+            var tglkembali = document.getElementById('id_tanggalkembali').value
+
+            namapelanggan.push(nmpelanggan)
+            alamatpelanggan.push(almtpelanggan)
+            totalberat.push(berat)
+            pilihanjasa.push(pilihanjs)
+            pengembalianbrg.push(kmblbarang)
+            tgldtg.push(tglcuci)
+            tglsls.push(tglkembali)
+
+            show()
+        }
+
+        function hapus(i){
+        if (confirm('Apakah Anda Ingin Menghapus Data Ini?')){
+            namapelanggan.splice(i,1)
+            alamatpelanggan.splice(i,1)
+            totalberat.splice(i,1)
+            pilihanjasa.splice(i,1)
+            pengambilanbrg.splice(i,1)
+            tgldtg.splice(i,1)
+            tglsls.splice(i,1)
+            show()
+            } else {
+
+            }
+        }
+  </script>
+      
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
