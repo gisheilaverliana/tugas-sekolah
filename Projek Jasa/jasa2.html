@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Washaholic Laundry</title>
+    <style>
+        body {background-color: whitesmoke;}
+        .container{
+          width: 1000px;
+        }
+      </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+        <img src="https://img2.pngdownload.id/20180528/gpr/kisspng-logo-laundry-service-laundry-room-towel-laundry-service-5b0c5a633468a5.3960161515275362272147.jpg" 
+        width="100" height="50" class="d-inline-block align-top" alt="logo" loading="lazy">
+        Hi! Selamat Mencuci Di Washaholic Laundry!
+        </a>
+      </nav>
+      <br>
+
+      <!--Form Data Pelanggan-->
+      <div class="container">
+        <form name="forminput">
+          <h3>Data Pesanan Pelanggan</h3>
+          <div class="form-group">
+
+            <label for="nama">Nama Pelanggan</label>
+            <input type="text" class="form-control" name="inputnama">
+
+            <label for="alamat">Alamat Pelanggan</label>
+            <input type="text" class="form-control" name="inputalamat">
+
+            <label for="berat">Total Berat (kg)</label><br>
+            <input type="number" class="form-control" name="inputberat">
+
+            <label for="jasa">Pilihan Jasa</label>
+            <select name="inputjasa" class="form-control" onclick="hargajasa()">
+              <option value="cuker">Cuci Kering</option>
+              <option value="setrika">Setrika</option>
+              <option value="komplit">Komplit</option>
+            </select>
+
+            <label for="barang">Pengambilan</label>
+            <select name="inputbarang" class="form-control">
+              <option value="ambil">Ambil</option>
+              <option value="Antar">Antar</option>
+            </select>
+
+            <label for="cuci">Tanggal Cuci</label>
+            <input type="date" name="inputcuci" class="form-control">
+
+            <label for="selesai">Tanggal Selesai</label>
+            <input type="date" name="inputselesai" class="form-control">
+
+            <label for="harga">Harga Jasa</label>
+            <input type="number" name="inputharga" class="form-control">
+
+            <label for="total">Total Harga(10%)</label>
+            <input type="number" name="inputtotal" class="form-control">
+
+            <input type="button" class="btn-btn-dark mt-2" value="bayar" onclick="add()">
+          </div>
+        </form>
+
+        <!--tabel data-->
+        <br id="Hasil">
+            <div class="container rounded"> 
+              <table class="table table-bordered mt-4">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Pelanggan</th>
+                    <th scope="col">Alamat Pelanggan</th>
+                    <th scope="col">Total Berat(kg)</th>
+                    <th scope="col">Jasa</th>
+                    <th scope="col">Pengambilan</th>
+                    <th scope="col">Tanggal Cuci</th>
+                    <th scope="col">Tanggal Selesai</th>
+                    <th scope="col">Harga(Rp)</th>
+                    <th scope="col">Total Harga</th>
+                    <th scope="col">Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody id="tampildata">
+                 
+                </tbody>
+              </table>
+            </div>
+
+            <!--detail pelanggan-->
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog"> 
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Detail Data Pesanan</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="form-group">
+                              <label for="nama">Nama Pelanggan</label>
+                              <input type="text" class="form-control" id="modalnama">
+      
+                          <div class="form-group">
+                              <label for="alamat">Alamat Pelanggan</label>
+                              <input type="text" class="form-control" id="modalalamat">
+                              
+                          <div class="form-group">
+                              <label for="berat">Total Berat(kg)</label>
+                              <input type="number" class="form-control" id="modalberat">
+      
+                              <label for="jasa">Jasa</label>
+                              <select class="form-control" id="modaljasa">
+                                  <option value="Cuci Kering">Cuci Kering</option>
+                                  <option value="Setrika">Setrika</option>
+                                  <option value="Komplit">Komplit</option>
+                              </select>
+      
+                              <label for="barang">Pengambilan</label>
+                              <select class="form-control" id="modalbarang">
+                                  <option value="antar">antar</option>
+                                  <option value="ambil">ambil</option>
+                              </select>
+      
+                          <div class="form-group">
+                              <label for="cuci">Tanggal Cuci</label>
+                              <input type="date" class="form-control" id="modalcuci">
+      
+                              <div class="form-group">
+                                  <label for="selesai">Tanggal Selesai</label>
+                                  <input type="date" class="form-control" id="modalselesai">
+      
+                              <div class="form-group">
+                                  <label for="harga">Harga</label>
+                                  <input type="number" class="form-control" id="modalharga">
+                                  
+                              <div class="form-group">
+                                <label for="total">Total</label>
+                                <input type="number" class="form-control" id="modaltotal">
+      
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="kembali()">Kembali</button>
+                           </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!--javascript-->
+      <script>
+        var nama = []
+        var alamat = []
+        var berat = []
+        var jasa = []
+        var barang = []
+        var cuci = []
+        var selesai = []
+        var harga = []
+        var total = []
+
+        var tampil = document.getElementById('tampildata')
+
+        function show(){
+          tampil.innerHTML = ""
+
+          for(i=0 ; i<nama.length ; i++){
+            var nodata = i+1
+
+            tampil.innerHTML+= "<tr>"+
+                  "<th>"+nodata+"</th>"+
+                  "<td>"+nama[i]+"</td>"+
+                  "<td>"+alamat[i]+"</td>"+
+                  "<td>"+berat[i]+"</td>"+
+                  "<td>"+jasa[i]+"</td>"+
+                  "<td>"+barang[i]+"</td>"+
+                  "<td>"+cuci[i]+"</td>"+
+                  "<td>"+selesai[i]+"</td>"+
+                  "<td>"+harga[i]+"</td>"+
+                  "<td>"+total[i]+"</td>"+
+                  "<td>"+
+                  "<button class='btn btn-outline-warning' data-toggle='modal' data-target='#modal' onclick='detail("+i+")' type='button'>Detail</button>"+
+                  "<button class='btn btn-outline-danger' href='#' onclick='hapus("+i+")' type='button'>Delete</button>"+
+                  "</td>"+
+                "</tr>"
+          }
+        }
+        show()
+
+        function add(){
+        var namabaru = document.getElementById('nama').value;
+        var alamatbaru = document.getElementById('alamat').value;
+        var beratbaru = document.getElementById('berat').value;
+        var jasabaru = document.getElementById('jasa').value;
+        var barangbaru = document.getElementById('barang').value;
+        var cucibaru = document.getElementById('cuci').value;
+        var selesaibaru = document.getElementById('selesai').value;
+        var hargabaru = document.getElementById('harga').value;
+        var totalbaru = document.getElementById('total').value;
+
+        nama.push(namabaru)
+        alamat.push(alamatbaru)
+        berat.push(beratbaru)
+        jasa.push(jasabaru)
+        barang.push(barangbaru)
+        cuci.push(cucibaru)
+        selesai.push(selesaibaru)
+        harga.push(hargabaru)
+        total.push(totalbaru)
+
+        show()
+
+      }
+
+      function hapus(i){
+        if (confirm('Apakah Anda Ingin Menghapus Data Ini?')){
+            nama.splice(i,1)
+            alamat.splice(i,1)
+            berat.splice(i,1)
+            jasa.splice(i,1)
+            barang.splice(i,1)
+            cuci.splice(i,1)
+            selesai.splice(i,1)
+            harga.splice(i,1)
+            total.splice(i,1)
+
+            show()
+            } else {
+
+            }
+        }
+
+        function hargajasa(){
+          var jasa = (document.forminput.inputjasa.value);
+          var harga = 0.0;
+
+          if (jasa == "cuker") {
+            harga = 7000;
+          } else if (jasa == "setrika") {
+            harga = 7000;
+          } else if (jasa == "komplit") {
+            harga = 10000;
+          } else {
+            harga = 0;
+          }
+          document.forminput.inputjasa.value = jasa;
+          document.forminput.inpuharga.value = eval(harga);
+        }
+
+        function diskon(){
+          var harga = (document.forminput.inputharga.value);
+          var total = (document.forminput.inputtotal.value);
+          var berat = (document.forminput.inputberat.value);
+          
+          total = harga * berat * (0.1)
+        }
+
+        var index = []
+
+          function detail(i) {
+            document.getElementById('modalnama').value = nama[i]
+            document.getElementById('modalalamat').value = alamat[i]
+            document.getElementById('modalberat').value = berat[i]
+            document.getElementById('modaljasa').value = jasa[i]
+            document.getElementById('modalbarang').value = barang[i]
+            document.getElementById('modalcuci').value = cuci[i]
+            document.getElementById('modalselesai').value = selesai[i]
+            document.getElementById('modalharga').value = harga[i]
+            document.getElementById('modaltotal').value = total[i]
+
+            index.push(i)
+          }
+
+          function kembali() {
+            var simpannama = document.getElementById('nama').value
+            var simpanalamat = document.getElementById('alamat').value
+            var simpanberat = document.getElementById('berat').value
+            var simpanjasa = document.getElementById('jasa').value
+            var simpanbarang = document.getElementById('barang').value
+            var simpancuci = document.getElementById('cuci').value
+            var simpanselesai = document.getElementById('selesai').value
+            var simpanharga = document.getElementById('harga').value
+            var simpantotal = document.getElementById('total').value
+            
+
+            nama[index] = simpannama
+            alamat[index] = simpanalamat
+            berat[index] = simpanberat
+            jasa[index] = simpanjasa
+            barang[index] = simpanbarang
+            cuci[index] = simpancuci
+            selesai[index] = simpanselesai
+            harga[index] = simpanharga
+            total[index] = simpantotal
+            
+            show()
+            index.pop()
+          }
+
+
+      </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
