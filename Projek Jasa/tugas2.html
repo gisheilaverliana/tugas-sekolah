@@ -12,7 +12,7 @@
     <style>
         .jumbotron{
             height: 500px;
-            background-image: url(https://images.pexels.com/photos/1721020/pexels-photo-1721020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+            background-image: url(https://images.pexels.com/photos/40737/sandals-flip-flops-footwear-beach-40737.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
             background-size: cover;
             background-position-y: bottom;
         }
@@ -29,8 +29,8 @@
   <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Elizabeth's Slipers</h1>
-          <p class="lead">Tersedia berbagai macam merk jenis model sendal jepit nyaman santai harga bersahabat</p>
+          <h1 class="display-4">Elisabeth's Sandal</h1>
+          <p class="lead">Menjual berbagai macam merk, motif, bentuk sendal jepit</p>
         </div>
       </div>
 
@@ -39,28 +39,23 @@
             <div class="col-4">
                 <div class="judullist bg-dark text-white rounded text-center pt-2">List Items</div>
 
-                <div class="card mt-3 mb-3" style="width: 22rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Sendal Ando</h5>
-                      <p class="card-text">Rp. 15.000</p>
-                      <p>Qty : 1</p>
-                      <a href="#" class="btn btn-danger float-right">Hapus</a>
-                    </div>
-                  </div>
+                <div class="listkeranjang" id="listkeranjang">
+                  
+                </div>
                   
                   <table width="100%">
                       <tbody>
                           <tr>
-                            <td>Discount (10%)</td>
-                            <td>Rp. 1.500</td>
+                            <td>Discount(5%)</td>
+                            <td>Rp. <span id="discount"></span></td>
                           </tr>
                           <tr>
                             <td>PPN (10%)</td>
-                            <td>Rp. 1.500</td>
+                            <td>Rp. <span id="pajak"></span></td>
                           </tr>
                           <tr class="bg-dark text-white">
                             <td>Total Bayar</td>
-                            <td>Rp. 15.000</td>
+                            <td>Rp. <span id="totalbayar"></span></td>
                           </tr>
                       </tbody>
                   </table>
@@ -69,48 +64,96 @@
 
               </div>
 
-              <div class="col-8">
-                  <div class="judulmenu bg-dark text-white rounded text-center pt-2 mb-3">Pilihan Sendal</div>
-                <div class="card float-left mr-3 mb-3" style="width: 14rem;">
-                    <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/medium//87/MTA-2176205/ando_ando-sandal-jepit-casual-pria-master-02---black-white_full05.jpg" class="card-img-top" alt="ando">
-                    <div class="card-body">
-                      <h5 class="card-title">Sendal Ando</h5>
-                      <h6>Rp. 15.000</h6>
-                      <a href="#" class="btn btn-primary float-right mt-3">Beli</a>
-                    </div>
-                  </div>
-
-                  <div class="card float-left mr-3 mb-3" style="width: 14rem;">
-                    <img src="https://cdn.elevenia.co.id/g/2/5/9/6/5/4/29259654_B.png" class="card-img-top" alt="ando">
-                    <div class="card-body">
-                      <h5 class="card-title">Sendal Swallow</h5>
-                      <h6>Rp. 10.000</h6>
-                      <a href="#" class="btn btn-primary float-right mt-3">Beli</a>
-                    </div>
-                  </div>
-
-                  <div class="card float-left mr-3 mb-3" style="width: 14rem;">
-                    <img src="https://cdn1.productnation.co/stg/sites/5/5c5004a2efd71.jpeg" class="card-img-top" alt="ando">
-                    <div class="card-body">
-                      <h5 class="card-title">Sendal Fipper</h5>
-                      <h6>Rp. 17.000</h6>
-                      <a href="#" class="btn btn-primary float-right mt-3">Beli</a>
-                    </div>
-                  </div>
-
-                  <div class="card float-left mr-3 mb-3" style="width: 14rem;">
-                    <img src="https://cdn1.productnation.co/stg/sites/5/5c5004a1c6bba.jpeg" class="card-img-top" alt="ando">
-                    <div class="card-body">
-                      <h5 class="card-title">Sendal Bata</h5>
-                      <h6>Rp. 20.000</h6>
-                      <a href="#" class="btn btn-primary float-right mt-3">Beli</a>
-                    </div>
-                  </div>
+              <div class="col-8" id="listproduk">
                   
-    
               </div>
           </div>
       </div>
+
+      <script>
+        var namabarang = ['Swallow','Ando','Nike','Adidas']
+        var hargabarang = [10000,12000,400000,40000]
+        var gambarbarang = ['https://cf.shopee.co.id/file/3a539ad49a6b39f5b21226a2e9f30015','https://p.ipricegroup.com/ca5672f7b6b5a84ddabc9d933a2ed73ad6a0c22b_0.jpg',
+                            'https://s.blanja.com/picspace/485/225765/700.700_e0a32099c8354ff78c86d9268b25cb3a.jpg','https://cf.shopee.co.id/file/7962991756bcc79baf93f54fb2e802b9']
+
+        var listproduk = document.getElementById('listproduk')
+        var listkeranjang = document.getElementById('listkeranjang')
+
+        var namabarang_krj = []
+        var hargabarang_krj = []
+
+        var tampildiscount = document.getElementById('discount')
+        var tampilpajak = document.getElementById('pajak')
+        var tampiltotalbayar = document.getElementById('totalbayar')
+
+        function showlistproduk(){
+          listproduk.innerHTML = ''
+          for (let i = 0; i < namabarang.length; i++) {
+           listproduk.innerHTML += '<div class="card float-left mr-3 mb-3" style="width: 14rem;">'+
+            '<img src="'+gambarbarang[i]+'"class="card-img-top" alt="...">'+
+            '<div class="card-body">'+
+            '<h5 class="card-title">'+namabarang[i]+'</h5>'+
+            '<h6>Rp. '+hargabarang[i]+'</h6>'+
+            '<a href="#" class="btn btn-primary" onclick="addlistitem('+i+')">Beli</a>'+
+            '</div>'+
+          '</div>'
+          }
+        }
+
+        function addlistitem(id){
+          namabarang_krj.push(namabarang[id])
+          hargabarang_krj.push(hargabarang[id])
+
+          showlistkeranjang()
+        }
+
+        function showlistkeranjang(){
+          listkeranjang.innerHTML=''
+
+          var discount = 0
+          var pajak = 0
+          var hargatotal = 0 
+          var totalbayar = 0
+
+          for (let i = 0; i <namabarang_krj.length; i++) {
+            listkeranjang.innerHTML += '<div class="card mt-3 mb-3" style="width: 22rem;">'+
+                    '<div class="card-body">'+
+                      '<h5 class="card-title">'+namabarang_krj[i]+'</h5>'+
+                      '<p class="card-text">Rp.'+hargabarang_krj[i] +'</p>'+
+                      '<p>Qty : 1</p>'+
+                      '<a href="#" class="btn btn-danger float-right" onclick="deleteitem('+i+')">Hapus</a>'+
+                    '</div>'+
+                  '</div>'
+
+              hargatotal = hargabarang_krj[i] + hargatotal
+
+              if(totalbayar>20000){
+                discount = totalbayar*0.05
+              } else {
+                discount = 0
+              }
+
+              totalbayar = hargatotal - discount
+
+              pajak = hargatotal * 0.1
+
+              var totalbelanja = totalbayar - pajak 
+              tampilpajak.innerHTML = pajak 
+              tampildiscount.innerHTML = discount 
+              tampiltotalbayar.innerHTML = totalbelanja
+            
+          }
+        }
+        showlistproduk()
+
+        function deleteitem(id) {
+            namabarang_krj.splice(id,1)
+            hargabarang_krj.splice(id,1)
+
+            showlistkeranjang()
+          }
+
+      </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
